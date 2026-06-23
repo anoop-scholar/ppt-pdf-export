@@ -45,28 +45,23 @@ The result is a PDF whose page dimensions match your illustration exactly. Drop 
 
 ---
 
-## Installation
+## Installation & Usage
 
-1. Open your PowerPoint presentation
-2. Press `Alt + F11` to open the VBA editor
-3. Click **Insert → Module**
-4. Paste the contents of [`ExportIllustrationAsPDF.bas`](ExportIllustrationAsPDF.bas) into the module
-5. Close the VBA editor
+Open your PowerPoint presentation and save it (.pptx)
+Press Alt + F11 to open the VBA editor
+Click Insert → Module — a white code editor appears on the right
+Open ExportIllustrationAsPDF.txt, copy all contents, and paste into the module
+Close the VBA editor (Alt + F4)
+Back in PowerPoint, select your illustration — a single shape, a group, or anything you've built
+Press Alt + F8, select ExportIllustrationAsPDF, and click Run
+The PDF is saved to the same folder as your .pptx, named after the shape
 
-**To add it to your Quick Access Toolbar** (recommended — makes it one click):
-- File → Options → Quick Access Toolbar
-- Choose *Macros* from the "Choose commands from" dropdown
-- Add `ExportIllustrationAsPDF` to the toolbar
 
----
+### Tip: 
+Add the macro to your Quick Access Toolbar (File → Options → Quick Access Toolbar → Macros) so it's a single click — just like the Mac right-click.
 
-## Usage
-
-1. Select your illustration (a shape, group, or any combination)
-2. Run the macro via `Alt + F8 → ExportIllustrationAsPDF → Run`, or click the toolbar button if you added it
-3. The PDF is saved to the same folder as your `.pptx`, named after the shape
-
-If your presentation hasn't been saved yet, the PDF goes to your Desktop.
+### Note: 
+When you add the macro, PowerPoint will show a yellow bar at the top saying "VBA projects must be saved in a macro-enabled presentation" — click Save As and save as .pptm to keep the macro. When closing, if it asks whether to save as macro-enabled (.pptm) or macro-free (.pptx), choose .pptm to keep the macro for future use, or .pptx to discard it — you can always re-paste it from this page.
 
 ---
 
