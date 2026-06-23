@@ -63,6 +63,11 @@ The result is a PDF whose page dimensions match your illustration exactly. Drop 
 - Microsoft Office VBA enabled (default in most installations)
 
 ---
+### Files Included
+
+- `ExportIllustrationAsPDF.bas` — standard VBA module (recommended). You can import it directly into the VBA editor via **File → Import File…**.
+- `ExportIllustrationAsPDF.txt` — plain-text copy for users who prefer to open the file and copy-paste the code manually.
+---
 
 ## Why not just use `pdfcrop`?
 
