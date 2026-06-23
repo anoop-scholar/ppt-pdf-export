@@ -56,21 +56,6 @@ The result is a PDF whose page dimensions match your illustration exactly. Drop 
 
 ---
 
-## LaTeX Usage
-
-```latex
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{figures/my_diagram.pdf}
-    \caption{Your caption here.}
-    \label{fig:my_diagram}
-\end{figure}
-```
-
-Because the output is a true vector PDF, it scales to any `width` without quality loss.
-
----
-
 ## Requirements
 
 - Windows
