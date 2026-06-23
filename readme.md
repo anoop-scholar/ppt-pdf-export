@@ -1,29 +1,29 @@
 # PowerPoint → PDF: Export Illustrations for LaTeX
 
-Export any illustration from PowerPoint as a **tight-cropped, vector-quality PDF** — on Windows. No slide borders, no white margins, no rasterization.
+Export PowerPoint illustrations as tightly cropped, vector-quality PDFs on Windows. Text remains text, graphics remain vectors, and no external tools are required. No slide borders, no white margins, no rasterization.
 
 ---
 
-## The Problem
+## Why?
 
-If you write papers in LaTeX, you know the rule: **always use PDF figures**. Vector graphics scale perfectly, render crisply in print, and keep file sizes small. The moment you drop a PNG or JPEG into your `.tex` file, you've committed to a blurry figure at any resolution that wasn't exactly what you exported at.
+PowerPoint is surprisingly effective for creating quick, publication-quality scientific figures, flowcharts, model architectures, and experimental pipelines. However, exporting those illustrations cleanly for LaTeX on Windows is awkward.
 
-PowerPoint is, despite everything, a genuinely good tool for making scientific illustrations. Flowcharts, system diagrams, model architectures, experimental pipelines — the combination of aligned shapes, editable text, and freeform drawing is hard to beat for quick, publication-quality figures.
-
-**But getting those illustrations into LaTeX on Windows is painful.**
-
+### Note:
 On a Mac, you right-click any shape or group and hit *Save as Picture → PDF*. Done. The PDF is cropped exactly to the illustration's bounding box, vectors are preserved, text stays text.
 
 On Windows, that option doesn't exist.
 
-Your options, as a Windows researcher, are:
-- **Export as PNG** — rasterized, not suitable for LaTeX figures at print resolution
-- **Save as PDF** — exports the entire slide, leaving you with enormous white margins you have to crop manually with `pdfcrop` or Adobe Acrobat
-- **Use Inkscape or Illustrator** — copy-paste from PowerPoint, fix broken styles, re-export. Tedious for every figure iteration.
-- **Switch to a Mac** — not always an option
+### Common workarounds include:
 
+* Exporting PNGs (rasterized)
+* Saving the entire slide as PDF and cropping later
+* Using pdfcrop
+* Copying into Inkscape or Illustrator and re-exporting
+
+These approaches add unnecessary friction to what should be a one-click operation.
 Every time you update a figure, you repeat this process. For a paper with 8 figures that each go through 5 revision cycles, that is 40 manual crop operations. It adds up.
 
+If you create diagrams for LaTeX documents, vector formats such as PDF are often preferable. They scale cleanly, preserve text and line quality, and typically produce smaller files than high-resolution raster images.
 ---
 
 ## The Solution
@@ -31,7 +31,7 @@ Every time you update a figure, you repeat this process. For a paper with 8 figu
 This VBA macro replicates the Mac right-click behaviour on Windows.
 
 Select any shape, group, or illustration in PowerPoint — regardless of whether it fits the slide, overflows it, or sits at an odd position — run the macro, and get a PDF cropped exactly to the illustration's bounding box, with all vectors and text preserved.
-
+---
 ### How it works
 
 The technique avoids all the canvas-resizing hacks that cause fiddly side effects. Instead:
