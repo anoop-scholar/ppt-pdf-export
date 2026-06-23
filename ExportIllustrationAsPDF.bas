@@ -1,0 +1,80 @@
+Attribute VB_Name = "ExportIllustrationAsPDF"
+' ============================================================
+' ExportIllustrationAsPDF
+' Export a selected PowerPoint illustration as a tight-cropped
+' vector PDF — for use in LaTeX and other PDF-first workflows.
+'
+' Usage:
+'   1. Save your presentation first (.pptx)
+'   2. Select any shape or group on your slide
+'   3. Run this macro (Alt+F8, or Quick Access Toolbar button)
+'   4. PDF is saved next to your .pptx, named after the shape
+'
+' Note: When closing PowerPoint, it will ask whether to save
+'   as a macro-enabled file (.pptm) or macro-free (.pptx).
+'   Choose .pptm to keep the macro for future use, or .pptx
+'   to discard it (you can always re-paste it from GitHub).
+'
+' https://github.com/anoop-scholar/ppt-pdf-export
+' ============================================================
+
+Sub ExportIllustrationAsPDF()
+
+    Dim pres As Presentation
+    Dim sld As Slide
+    Dim shp As Shape
+    Dim folderPath As String
+
+    Set pres = ActivePresentation
+
+    ' --- Warn if presentation is not saved ---
+    If pres.Path = "" Then
+        MsgBox "Please save your presentation first, then run the macro again.", vbExclamation
+        Exit Sub
+    End If
+
+    Set sld = ActiveWindow.View.Slide
+
+    If ActiveWindow.Selection.Type <> ppSelectionShapes Then
+        MsgBox "Please select a shape or group first.", vbExclamation
+        Exit Sub
+    End If
+
+    Set shp = ActiveWindow.Selection.ShapeRange(1)
+
+    folderPath = pres.Path & "\"
+
+    Dim pdfPath As String
+    pdfPath = folderPath & shp.Name & ".pdf"
+
+    ' --- Create new presentation FIRST ---
+    Dim newPres As Presentation
+    Set newPres = Presentations.Add(WithWindow:=msoTrue)
+    newPres.PageSetup.SlideWidth = shp.Width
+    newPres.PageSetup.SlideHeight = shp.Height
+
+    Dim newSld As Slide
+    Set newSld = newPres.Slides.Add(1, ppLayoutBlank)
+
+    ' --- Go back to original, copy shape AFTER new pres is ready ---
+    pres.Windows(1).Activate
+    shp.Select
+    shp.Copy
+
+    ' --- Switch to new pres and paste ---
+    newPres.Windows(1).Activate
+    newPres.Windows(1).View.GotoSlide 1
+
+    Dim pasted As ShapeRange
+    Set pasted = newSld.Shapes.Paste
+    pasted.Left = 0
+    pasted.Top = 0
+
+    ' --- Export as PDF ---
+    newPres.ExportAsFixedFormat2 pdfPath, ppFixedFormatTypePDF
+    newPres.Saved = True
+    newPres.Close
+
+    MsgBox "Saved to:" & vbCrLf & pdfPath, vbInformation
+
+End Sub
