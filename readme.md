@@ -2,6 +2,7 @@
 
 Export any PowerPoint illustration as a tightly cropped, vector-quality PDF on Windows. Text remains text, graphics remain vectors, no external tools required — no slide borders, no white margins, no rasterization.
 
+![Preview](https://github.com/anoop-scholar/ppt-pdf-export/blob/main/ppt-pdf-export.png)
 ---
 
 ## Why?
